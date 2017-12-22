@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Call order</title>
+
+	<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+
+<!-- call back -->
+    <button id="openCallWindow" class="btn btn-info mx-call-back_btn">Call order</button>
+    <section class="mx-back_call_wrap">
+      <div class="mx-consult">
+          <div class="row">
+              <div class="col-xs-12 col-md-6 col-sm-6 mx-number_wrap">
+                  <p>0 000 000 00 00</p>
+                  <p>Phone number 1</p>
+              </div>
+              <div class="col-xs-12 col-md-6 text-right mx-number_wrap col-sm-6">
+                  <p>+0 000 000 00 00</p>
+                  <p>Phone number 2</p>
+              </div>
+          </div>
+          <h3 class="text-blue">Call order</h3>
+          <form action="/">
+              <select class="form-control" name="State">
+                  <option value="Alabama" selected="selected">Alabama</option>
+                  <option value="Alaska">Alaska</option>
+                  <option value="Arizona">Arizona</option>
+                  <option value="Arkansas">Arkansas</option>
+                  <option value="California">California</option>
+              </select>
+              <div class="form-group">
+                  <input type="text" name="name" class="form-control required" placeholder="Name">
+              </div>
+              <div class="form-group">
+                  <input type="text" name="phone" id="" class="form-control required" placeholder="Phone">
+              </div>
+              <div class="form-group">
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox" name="terms" checked="checked">
+                          <span class="mx-license_text"> Consent to the processing of </span>
+                          <a href="#" target="_blank" class="mx-license_link">personal data</a>
+                      </label>
+                  </div>
+              </div>
+              <input type="submit" class="btn btn-info uppercase col-sm-offset-3 col-sm-6 col-xs-12" value="Send">
+          </form>
+          <span class="mx-ico-close"></span>
+      </div>
+    </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+	var KeyMenu = false;
+
+	$('#openCallWindow').on('click', function(){
+		$('body').addClass('mx-back_call_open');
+		setTimeout(function(){
+			$('.mx-consult').addClass('mx-actice');
+			KeyMenu = true;
+		}, 100);
+	});
+
+	$('.mx-ico-close').on('click', function(){
+		$('.mx-consult').removeClass('mx-actice');
+		$('body').addClass('mx-closed');
+
+		setTimeout(function(){
+			$('body').removeClass('mx-back_call_open');
+			$('body').removeClass('mx-closed');
+		}, 900);
+
+		KeyMenu = false;
+		
+	});
+
+	$( document ).click( function( e ){
+		var blockMenu = $( '.mx-consult' );		
+		if( KeyMenu === true ){
+			if( !blockMenu.is( e.target ) && blockMenu.has( e.target).length === 0 ){
+
+				$('.mx-consult').removeClass('mx-actice');
+				$('body').addClass('mx-closed');
+
+				setTimeout(function(){
+					$('body').removeClass('mx-back_call_open');
+					$('body').removeClass('mx-closed');
+				}, 900);
+				KeyMenu = false;
+
+			}
+		}
+	});
+</script>
+
+
+</body>
+</html>
